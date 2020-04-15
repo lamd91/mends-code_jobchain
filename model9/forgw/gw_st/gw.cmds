@@ -1,0 +1,122 @@
+!----------------------------------------------------------!
+! # This is the GW command file.                           !
+! # Comment/uncomment command lines by typing/removing '!' !
+!----------------------------------------------------------!
+! # Dan-Thuy Lam, Mai 2016                                 !
+!----------------------------------------------------------!
+!
+!
+! - [0] Mesh conversion to binary format:
+!output finite element mesh
+!F
+!
+!rebuild finite elements data file
+!
+! - [1.0] Solver
+!
+!===================
+OMP number of threads
+1
+!===================
+!
+! > Use AMG solver:
+!use AMG solver
+!
+! > Define AMG absolute tolerance:
+!AMG absolute tolerance
+!1.0E-14
+!
+! - [1.1] Check and Control Commands:
+!
+!output optimal LU matrix storage
+!output optimal FE matrix storage
+!
+reduce matrix size by Dirichlet nodes
+!
+display solver iterations
+!
+!check mesh quality
+!
+! - Gauss quadrature precision:
+use highest quadrature precision
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! - [2] Flow boundary conditions:
+!
+! - Get boundary conditions from external ASCII file(s):
+read flow boundary conditions in file
+Flow_BCs_ST.txt
+!
+! - Get initial head distribution from ASCII file:
+!get initial head distribution from file
+!InitialHeads.txt
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+! - [3] Flow Param:
+! . Assign external distribution to some layer material IDs:
+assign parameter distributions to classes
+5
+T
+flowParFile
+F
+F
+1
+2
+3
+4
+5
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! - [5] Outputs:
+!
+!output main programs CPU
+!
+! - Material names:
+material classes have names
+5
+1	Layer_1
+2	Layer_2
+3	Layer_3
+4	Layer_4
+5	Layer_5
+!
+!
+! - Choose one or more output format:
+do not output vtk files
+!do not output tecplot files
+!do not calculate fluid budget
+!
+! - Output parameters:
+!
+output nodal head values
+headOutput.txt
+!
+!
+! - Output boundary conditions:
+output boundary conditions
+!
+! - Write flow solution and parameters in a TECPLOT zone for each model layer:
+write fluid flow solution in mesh zones
+!
+! - Output parameters:
+!write parameter classes in mesh zones
+!
+! - Observation points:
+!
+! - Calibration plot:
+compare solution to field observations
+10 3
+1	270.00
+2	270.00
+3	270.00
+4	269.45
+5	269.26
+6	271.94
+7	271.96
+8	271.89
+9	271.54
+10	271.11
