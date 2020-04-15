@@ -31,17 +31,17 @@ pyrDim1=125
 # Create localization matrix
 if dataTypes == "h":
 	if modelName == 'model9':
-		locMatrix = myFun.makeTaperMatrix_smallGrid(homeDirPath, 1600, pyrDim0, pyrDim1, 5000, 500)[:, 0:370] 
+		locMatrix = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 1600, pyrDim0, pyrDim1, 5000, 500)[:, 0:370] 
 	elif modelName == 'model10':
-		locMatrix = myFun.makeTaperMatrix_smallGrid(homeDirPath, 2800, pyrDim0, pyrDim1, 5000, 500)[:, 0:370]
+		locMatrix = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 2800, pyrDim0, pyrDim1, 5000, 500)[:, 0:370]
 elif dataTypes == "h+q":
 	if modelName == 'model9':
-		locMatrix_h = myFun.makeTaperMatrix_smallGrid(homeDirPath, 1600, 13, 125, 5000, 500)[:, 0:370] 
-		locMatrix_q = myFun.makeTaperMatrix_smallGrid(homeDirPath, 1600, 13, 125, 5000, 500)[:, 1026:] 
+		locMatrix_h = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 1600, 13, 125, 5000, 500)[:, 0:370] 
+		locMatrix_q = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 1600, 13, 125, 5000, 500)[:, 1026:] 
 		locMatrix = np.hstack((locMatrix_h, locMatrix_q))	
 	elif modelName == 'model10':
-		locMatrix_h = myFun.makeTaperMatrix_smallGrid(homeDirPath, 2500, 13, 125, 5000, 500)[:, 0:370] 
-		locMatrix_q = myFun.makeTaperMatrix_smallGrid(homeDirPath, 2500, 13, 125, 5000, 500)[:, 1026:] 
+		locMatrix_h = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 2500, 13, 125, 5000, 500)[:, 0:370] 
+		locMatrix_q = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 2500, 13, 125, 5000, 500)[:, 1026:] 
 		locMatrix = np.hstack((locMatrix_h, locMatrix_q))	
 
 # Compute the covariance matrices based on the ensembles

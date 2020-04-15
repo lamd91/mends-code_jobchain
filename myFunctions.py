@@ -397,7 +397,7 @@ def computeDevFromEnsMean_withoutscaling(nbOfMembers, nbOfElements, oldMember, o
 
 
 
-def makeTaperMatrix_smallGrid(homeDirPath, range_x, pyrDim_0, pyrDim_1, L_x, L_y): # for synthetic case (model1, model4)
+def makeTaperMatrix_smallGrid(homeDirPath, modelDirPath, range_x, pyrDim_0, pyrDim_1, L_x, L_y): # for synthetic case (model1, model4)
 	
 	# Calculate parameter centroids
 	x_nodes = np.linspace(0, L_x, pyrDim_1+1)
@@ -414,8 +414,8 @@ def makeTaperMatrix_smallGrid(homeDirPath, range_x, pyrDim_0, pyrDim_1, L_x, L_y
 	z_par = np.reshape(np.repeat(z_centroids, pyrDim_1), (-1,))
 
 	# Load Data coordinates 
-	hObsCoord = np.loadtxt(homeDirPath + '/headObsLocations.txt') # coordinates of the 10 head observation locations
-	qObsCoord = np.loadtxt(homeDirPath + '/flowrateObsLocations.txt') # coordinates of the 5 head observation locations
+	hObsCoord = np.loadtxt(modelDirPath + '/headObsLocations.txt') # coordinates of the 10 head observation locations
+	qObsCoord = np.loadtxt(modelDirPath + '/flowrateObsLocations.txt') # coordinates of the 5 head observation locations
 	x_hObs = hObsCoord[:, 0] # x coordinates in meter of head observations
 	z_hObs = hObsCoord[:, 2] # z
 	x_qObs = qObsCoord[:, 0] # x coordinates in meter of flowrate observations (mean of element centroids)
@@ -427,7 +427,7 @@ def makeTaperMatrix_smallGrid(homeDirPath, range_x, pyrDim_0, pyrDim_1, L_x, L_y
 	nbOfData = np.loadtxt(homeDirPath + '/simHeads_0.txt').shape[0] + np.loadtxt(homeDirPath + '/simFlowrates_0.txt').shape[0] # #obs = heads + flowrates
 	taperMatrix = np.zeros((nbOfPar, nbOfData)) # define taper matrix of dimensions (nbOfPar, nbOfData)
 	
-	obsIDList = np.loadtxt(homeDirPath + '/mapOfDataList2obsID_syn_ALLDATA.txt') 
+	obsIDList = np.loadtxt(modelDirPath + '/mapOfDataList2obsID_syn_ALLDATA.txt') 
 
 	k=0
 	for l in range(0, nbOfData):
