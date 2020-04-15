@@ -4,5 +4,5 @@ This repository contains an implementation of MEnDS, a "Multi-resolution approac
 
 This implementation corresponds to the execution of multiple jobs (a job chain) and is meant to be run on a CPU cluster managed by SLURM.
 
-Run this job chain implementation by executing the bash script named "mends.sh".
+To run this job chain implementation, execute the bash script named "mends.sh".
 
