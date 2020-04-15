@@ -1,4 +1,4 @@
-# mends_code / "job chain" version
+# mends_code ("job chain" version)
 
 This repository contains an implementation of MEnDS, a "Multi-resolution approach to condition categorical multiple-point realizations to dynamic data with iterative ensemble smoothing" (https://doi.org/10.1029/2019WR025875).
 
