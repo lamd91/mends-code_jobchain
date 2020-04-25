@@ -12,7 +12,4 @@ dataTypes=$4
 paste -d' ' $(printf simHeads_%d".txt " ${memberIndices[@]}) > hSim_ens_${currentIteration}_${ensembleSize}.txt
 paste -d' ' $(printf simFlowrates_%d".txt " ${memberIndices[@]}) > qSim_ens_${currentIteration}_${ensembleSize}.txt
 
-head -n1 -q $(printf objFunValues_%d".txt " $(seq 0 $lastProcessRank)) > objFunEns_pr.txt
-tail -q -n1 $(printf objFunValues_%d".txt " $(seq 0 $lastProcessRank)) > objFunEns_post.txt
-
 

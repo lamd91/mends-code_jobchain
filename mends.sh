@@ -5,26 +5,7 @@
 ## Ensemble DA is performed by the iterative ensemble smoother ES-MDA (Emerick & Reynolds 2013) which uses a predefined number of iterations.
 ## The multiresolution multiple-point direct sampling simulations described in Straubhaar et al. 2020 are performed by a special version of DeeSse which allows hard data conditioning at the coarsest scale of the simulations.
 
-#######################################
-
-## SLURM options for the execution of this script as a slurm job (i.e. by running the command "sbatch mends.sh")
-
-# Give job a name
-#SBATCH -J mends
-
-# Redirect error and standard output
-#SBATCH -o mends.out
-
-# Allocate one CPU
-#SBATCH -c 1
-
-# Allocate memory per cpu
-#SBATCH --mem-per-cpu=3900
-
-# Request amount of run time
-#SBATCH -t 03:00:00
-
-#######################################
+###########################################
 
 # Clean main working directory
 rm -f flowPar* # delete some files in main directory
@@ -73,7 +54,7 @@ jobID_6=`sbatch --parsable -J bns_0 -o bns_0.out -c 3 --mem-per-cpu=3900 -p any 
 jobID_7=`sbatch --parsable -J uPyrEns_0 -o uPyrEns_0.out -n 1 -c 1 -p any --exclude=node[08-10]   -t 00:10:00 --dependency=afterok:${jobID_6} updatePyrEns.sh $modelName 0 ${lastProcessRank}`
 
 
-# Update parameters (analysis)
+# Optimization loop 
 
 it=0 # counter of iterations 
 
@@ -95,9 +76,10 @@ do
 	# Update ensemble of K parameters and Normal-Score Transformed simulated data
 	jobID_11=`sbatch --parsable -J ens-mp_simD_${it} -o ens-mp_nsD_${it}.out -n 1 -c 1 -p any --exclude=node[08-10]   -t 00:05:00 --dependency=afterok:${jobID_10} makeEns_mpsim_simData.sh ${modelName} ${it} ${lastProcessRank}`
 
-	# Compare the objective function value before and after parameter update
+	# Compute objective function
 	jobID_12=`sbatch --parsable -J OF_${it} -o OF_${it}.out -p any --exclude=node[08-10] -c 1 -t 00:10:00 --dependency=afterok:${jobID_11} --array=0-${lastProcessRank} array_calcOF.sh $modelName $dataTypes ${it}`
 
+	# Create output files from the current iteration for later analysis 
 	jobID_13=`sbatch --parsable -J interFiles_${it} -o interFiles_${it}.out -n 1 -c 1 -p any --exclude=node[08-10] -t 00:05:00 --dependency=afterok:${jobID_12} makeFiles4IntermediateFigs.sh $modelName $ensembleSize ${it} $dataTypes`
 
 	# Compute deviations of parameter and simulated data from ensemble mean 		
@@ -107,7 +89,7 @@ do
 	jobID_15=`sbatch --parsable -J devEns_${it} -o simDataDevEns_ParDevEns_${it}.out -p any --exclude=node[08-10] -c 1 -n 1 -t 00:05:00 --dependency=afterok:${jobID_14} makeEnsOfDeviations.sh $ensembleSize`
 
 	# Calculate parameter update (ES-MDA update equation)
-	jobID_16=`sbatch --parsable -J gain_${it} -o gain2_${it}.out -p any --exclude=node[08-10] -c 3 -t 00:10:00 --dependency=afterok:${jobID_15} --array=0-${lastProcessRank} array_computeGain_esmda-loc_updateNSPyr.sh $ensembleSize $modelName ${nbSV_svds2} $dataTypes $nbAssimilations`
+	jobID_16=`sbatch --parsable -J gain_${it} -o gain_${it}.out -p any --exclude=node[08-10] -c 3 -t 00:10:00 --dependency=afterok:${jobID_15} --array=0-${lastProcessRank} array_computeGain_esmda-loc_updateNSPyr.sh $ensembleSize $modelName ${nbSV_svds2} $dataTypes $nbAssimilations`
 
 	# Update ensemble of parameters (i.e. the normal score transformed values of pyramid coarsest level values)
 	jobID_17=`sbatch --parsable -J u_nsPyrEns_${it} -o u_nsPyrEns_${it}.out -n 1 -c 1 --mem-per-cpu=3900 -p any --exclude=node[08-10]   -t 1:00:00 --dependency=afterok:${jobID_16} updateNSPyrEns.sh $modelName $lastProcessRank $dataTypes ${it}`
