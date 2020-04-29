@@ -42,7 +42,7 @@ jobID_3=`sbatch --parsable -J ns_0 -o ns_0.out -c 1 --mem-per-cpu=3900 -p any -t
 # Create initial ensemble of normal score transformed values 
 jobID_4=`sbatch --parsable -J nsPyrEns_0 -o nsPyrEns_0.out -n 1 -c 1 -p any -t 1:00:00 --dependency=afterok:${jobID_3} makeNSPyrEns.sh $modelName $lastProcessRank $dataTypes 0`
 
-# Sample conditioning locations from conditioning map to give to Deesse (uncomment in order to generate a new file with hard conditioning point locations) 
+# Sample conditioning locations from conditioning map to give to Deesse (comment this job if you want to generate a new file with hard conditioning point locations) 
 jobID_5=`sbatch --parsable -J sampleCD -o sampleCD.out -p any -c 1 -n 1 -t 00:10:00 --dependency=afterok:${jobID_4} sampleConditioningLocations.sh $modelName`
 
 # Back Transform the transformed pyramid values
