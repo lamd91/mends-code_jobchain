@@ -19,7 +19,7 @@ dataTypes = sys.argv[4]
 nbOfElements = int(sys.argv[5])
 homeDirPath = sys.argv[6]
 
-parEns = np.loadtxt(homeDirPath + '/ens_of_parameters.txt') # Ensemble Smoother is applied to normal score transformed values of log of parameters (K, S)
+parEns = np.loadtxt(homeDirPath + '/ens_of_parameters.txt') 
 par = np.reshape(parEns[:, rank],(-1, 1))	
 
 devFromEnsMeanOfPar = myFun.computeDevFromEnsMean_withoutscaling(nbOfEnsMembers, nbOfElements, par, parEns)
