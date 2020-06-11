@@ -97,7 +97,7 @@ parEns_old = np.loadtxt(homeDirPath + '/ens_of_parameters.txt') # contains each 
 par_old = np.reshape(parEns_old[:, rank], (-1, 1))
 
 parUpgradeFromDataMismatch = np.dot(np.multiply(locMatrix, np.dot(ensOfParDevFromEnsMean, X3)), innov)
-par_new = par_old + parUpgradeFromDataMismatch # Log of hydraulic conductivities
+par_new = par_old + parUpgradeFromDataMismatch
 
 np.savetxt('parUpgradeFromDataMismatch_' + processRank + '.txt', parUpgradeFromDataMismatch, fmt="%.2e")
 
