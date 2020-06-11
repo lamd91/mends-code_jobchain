@@ -12,13 +12,13 @@ homeDirPath = sys.argv[3]
 modelName = sys.argv[4]
 rank = int(processRank)
 
-# Load ensemble of log K parameters before transformation
+# Load initial ensemble of pyramid coarsest values before normal-score transformation
 origPyr_perLoc = np.transpose(np.loadtxt(homeDirPath + '/iniOrigPyrEns.txt'))
 
-# Load ensemble of transformed parameters
+# Load ensemble of transformed values (i.e. parameters updated by ES-MDA)
 updatedNormalScoresOfPar_perLoc = np.transpose(np.loadtxt(homeDirPath + '/ens_of_parameters.txt'))
 
-# Compute Back Transform of Normal Score of log K and save in text file
+# Compute Back Transform of Normal-Score values and save in text file
 pyr = bnscore_pyr(updatedNormalScoresOfPar_perLoc, homeDirPath)[rank, :]
 
 pyrDim_0 = 13
