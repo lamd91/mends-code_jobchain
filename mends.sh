@@ -5,8 +5,7 @@
 ## The workflow leverages multiresolution multiple-point Direct Sampling (DS) simulations to perform Ensemble Data Assimilation. 
 ## We named this DA workflow/approach "MEnDS" since its goal is to "mend" structures which otherwise would break with standard Ensemble DA.
 ## Ensemble DA is here performed by the iterative ensemble smoother ES-MDA (Emerick & Reynolds 2013) which uses a predefined number of iterations.
-## The multiresolution multiple-point DS simulations described in Straubhaar et al. (2020) are here performed by a special version of DeeSse.
-## This version of DeeSse allows hard data conditioning at the coarsest scale of the simulations.
+## The multiresolution multiple-point DS simulations developed by Straubhaar et al. (2020) are here performed by a special version of DeeSse which allows hard data conditioning at the coarsest scale of the simulations.
 
 ###########################################
 
