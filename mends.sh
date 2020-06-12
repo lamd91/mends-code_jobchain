@@ -1,9 +1,12 @@
 #!/bin/bash 
 
 ## This script allows the execution of a chain of jobs on a cluster of CPUs which uses SLURM to schedule job submissions.
-## This chain of jobs is an implementation a data assimilation (DA) workflow introduced in the article "Multi‐resolution approach to condition categorical multiple‐point realizations to dynamic data with iterative ensemble smoothing" (Lam et al. 2020). The workflow represents a "Multiresolution approach for ENsemble data assimilation" which leverages "multiple-point Direct Sampling simulations". Hence this DA method could be named "MEnDS".
-## Ensemble DA is performed by the iterative ensemble smoother ES-MDA (Emerick & Reynolds 2013) which uses a predefined number of iterations.
-## The multiresolution multiple-point direct sampling simulations described in Straubhaar et al. 2020 are performed by a special version of DeeSse which allows hard data conditioning at the coarsest scale of the simulations.
+## This chain of jobs is an implementation a data assimilation (DA) workflow introduced in Lam et al. (2020) ("Multi‐resolution approach to condition categorical multiple‐point realizations to dynamic data with iterative ensemble smoothing").
+## The workflow leverages multiresolution multiple-point Direct Sampling (DS) simulations to perform Ensemble Data Assimilation. 
+## Hence we have named the DA approach "MEnDS".
+## Ensemble DA is here performed by the iterative ensemble smoother ES-MDA (Emerick & Reynolds 2013) which uses a predefined number of iterations.
+## The multiresolution multiple-point DS simulations described in Straubhaar et al. (2020) are here performed by a special version of DeeSse.
+## This version of DeeSse allows hard data conditioning at the coarsest scale of the simulations.
 
 ###########################################
 
