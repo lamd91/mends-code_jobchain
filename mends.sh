@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 ## This script allows the execution of a chain of jobs on a cluster of CPUs which uses SLURM to schedule job submissions.
-## This chain of jobs is an implementation a data assimilation (DA) workflow introduced in Lam et al. (2020) ("Multi‐resolution approach to condition categorical multiple‐point realizations to dynamic data with iterative ensemble smoothing").
+## This chain of jobs is an implementation of a data assimilation (DA) workflow introduced in Lam et al. (2020).
 ## The workflow leverages multiresolution multiple-point Direct Sampling (DS) simulations to perform Ensemble Data Assimilation. 
 ## Hence we have named the DA approach "MEnDS".
 ## Ensemble DA is here performed by the iterative ensemble smoother ES-MDA (Emerick & Reynolds 2013) which uses a predefined number of iterations.
