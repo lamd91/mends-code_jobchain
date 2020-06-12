@@ -31,7 +31,7 @@ nbLevels=2 # number of levels in pyramid for multiresolution MPS simulations in 
 
 # Generate ensemble of MPS simulations with DeeSse
 # Save resulting pyramids
-jobID_1=`sbatch --parsable -J genMP -o genMP.out -c 1 -p any -t 00:20:00  --array=0-${lastProcessRank} generateMPSim_savePyr.sh $modelName 0 $nbLevels`
+jobID_1=`sbatch --parsable -J genMP -o genMP.out -c 1 -p any -t 00:20:00  --array=0-${lastProcessRank} generateMPSim_savePyr.sh $modelName $nbLevels`
 
 # Make ensemble of pyramid (coarsest-level) values, categorical MPS fields
 jobID_2=`sbatch --parsable -J mp-pyrEns_0 -o mp-pyrEns_0.out -n 1 -c 1 -p any -t 00:10:00 --dependency=afterok:${jobID_1} makeInitialMPSimEns.sh ${lastProcessRank}`
@@ -68,7 +68,7 @@ do
 	
 	# Condition previous MP simulation using the updated gaussian pyramid as hard data (DeeSse)
 	# Populate facies simulations with constant K values
-	jobID_9=`sbatch --parsable -J condMP_${it} -o condMP_${it}.out -c 3 -p any -t 01:00:00 --dependency=afterok:${jobID_8b} --array=0-${lastProcessRank} conditionMPSim.sh $modelName ${it} ${nbLevels}`
+	jobID_9=`sbatch --parsable -J condMP_${it} -o condMP_${it}.out -c 3 -p any -t 01:00:00 --dependency=afterok:${jobID_8b} --array=0-${lastProcessRank} conditionMPSim.sh $modelName ${nbLevels}`
 	
 	# Run forward model with the updated MP simulations 
 	jobID_10=`sbatch --parsable -J fwd_${it} -o fwd_${it}.out -c 1 -p any -c 1 -t 01:00:00  --dependency=afterok:${jobID_9} --array=0-${lastProcessRank} array_runForwardModel.sh $modelName $dataTypes ${it} $nbAssimilations`
