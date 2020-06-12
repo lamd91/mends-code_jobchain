@@ -2,7 +2,7 @@ This repository contains an implementation of MEnDS, a "Multi-resolution approac
 
 This implementation corresponds to the execution of a "job chain", i.e. the submission of multiple jobs with dependency conditions, and is meant to be run on a CPU cluster managed by SLURM.
 
-In addition to the files provided in this repository, you will need to acquire the executable "deesseHDinPyrOMP" from the randlab research group (more info on http://www.randlab.org/). This executable is necessary to run generateMPSim_savePyr.sh and conditionMPSim.sh.
+In addition to the files provided in this repository, you will need to acquire the executable "deesseHDinPyrOMP" from the RandLab research group (more info on http://www.randlab.org/). This executable is necessary to run generateMPSim_savePyr.sh and conditionMPSim.sh.
 
-Then, in order to run this job chain implementation, you only need to run the bash script mends.sh by typing "./mends.sh" from the repository.
+Then, to run this job chain implementation, execute the bash script mends.sh by typing "./mends.sh" from the repository.
 
