@@ -26,8 +26,7 @@ echo -n "Process ${SLURM_ARRAY_TASK_ID} running on:"
 hostname
 
 modelName=$1
-iteration=$2
-nbLevels=$3
+nbLevels=$2
 
 homeDirPath=$(pwd)
 
