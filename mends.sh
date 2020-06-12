@@ -18,7 +18,7 @@ rm -f gauss*.txt
 # Variables to set manually before running this script 
 ensembleSize=100
 nbAssimilations=16 # number of predefined iterations
-nbSV_svds2=99 # number of singular values used in SVD
+nbSV=99 # number of singular values used in SVD
 modelName="model9"  # "model9" corresponds to test case with reference 'A', "model10" corresponds to case 'B'
 dataTypes="h" # only the hydraulic heads are assimilated in test cases 'A' and 'B'
 nbLevels=2 # number of levels in pyramid for multiresolution MPS simulations in test cases 'A' and 'B'
@@ -89,7 +89,7 @@ do
 	jobID_15=`sbatch --parsable -J devEns_${it} -o simDataDevEns_ParDevEns_${it}.out -p any -c 1 -n 1 -t 00:05:00 --dependency=afterok:${jobID_14} makeEnsOfDeviations.sh $ensembleSize`
 
 	# Calculate parameter update (ES-MDA update equation)
-	jobID_16=`sbatch --parsable -J gain_${it} -o gain_${it}.out -p any -c 3 -t 00:10:00 --dependency=afterok:${jobID_15} --array=0-${lastProcessRank} array_computeGain_esmda-loc_updateNSPyr.sh $ensembleSize $modelName ${nbSV_svds2} $dataTypes $nbAssimilations`
+	jobID_16=`sbatch --parsable -J gain_${it} -o gain_${it}.out -p any -c 3 -t 00:10:00 --dependency=afterok:${jobID_15} --array=0-${lastProcessRank} array_computeGain_esmda-loc_updateNSPyr.sh $ensembleSize $modelName ${nbSV} $dataTypes $nbAssimilations`
 
 	# Update ensemble of parameters (i.e. the normal score transformed values of pyramid coarsest level values)
 	jobID_17=`sbatch --parsable -J u_nsPyrEns_${it} -o u_nsPyrEns_${it}.out -n 1 -c 1 --mem-per-cpu=3900 -p any -t 1:00:00 --dependency=afterok:${jobID_16} updateNSPyrEns.sh $modelName $lastProcessRank $dataTypes ${it}`
