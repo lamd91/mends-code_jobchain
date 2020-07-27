@@ -40,7 +40,6 @@ objFun_new = float(format(objFun[0], '.3e'))
 # Append list of objective function values in file
 with open('objFunValues_' + processRank + '.txt', 'a') as g:
 	g.write("%e\n" % objFun_new)
-	g.close()
 
 if dataTypes == "h+q":
 	OF_h = float(format(objFun[1], '.4e'))
@@ -49,11 +48,10 @@ if dataTypes == "h+q":
 	# Write OF values computed using head data only
 	with open('objFun_h_' + processRank + '.txt', 'a') as p:
 		p.write("%e\n" % OF_h)
-		p.close()
+		
 	# Write OF values computed using flowrate data only
 	with open('objFun_q_' + processRank + '.txt', 'a') as q:
 		q.write("%e\n" % OF_q)
-		q.close()
 
 elif dataTypes == "h":
 	OF_h = float(format(objFun[1], '.4e'))
@@ -61,14 +59,9 @@ elif dataTypes == "h":
 	# Write OF values computed using head data only
 	with open('objFun_h_' + processRank + '.txt', 'a') as g:
 		g.write("%e\n" % OF_h)
-		g.close()
 	
 if objFun_new <= objFun_min: 	
-
 	# Update the minimum objective function value
 	with open('objFunMin_' + processRank + '.txt', 'w') as m:
 		m.flush()
 		m.write("%e" % objFun_new)
-		m.close()
-
-
