@@ -24,15 +24,15 @@ nbObsPts=$(awk '/OBSERVATION POINTS/{f=1;next} /end/{f=0} f' ${homeDirPath}/$mod
 
 if [ ${iteration} -eq 0 ]
 then
-	# Compute initial value of objective function
-	./initOF.py $modelName ${SLURM_ARRAY_TASK_ID} $dataTypes
-	wait
+    # Compute initial value of objective function
+    ./initOF.py $modelName ${SLURM_ARRAY_TASK_ID} $dataTypes
+    wait
 else
-	# Read files
-	objFun=$(<objFunMin_${SLURM_ARRAY_TASK_ID}.txt) # contains the minimum objective function value obtained so far
+    # Read files
+    objFun=$(<objFunMin_${SLURM_ARRAY_TASK_ID}.txt) # contains the minimum objective function value obtained so far
 
-	# Compute objective function before and after update and make changes accordingly
-	./calcOF.py $modelName ${SLURM_ARRAY_TASK_ID} $objFun $dataTypes
-	wait
+    # Compute objective function before and after update and make changes accordingly
+    ./calcOF.py $modelName ${SLURM_ARRAY_TASK_ID} $objFun $dataTypes
+    wait
 fi
 

@@ -36,15 +36,12 @@ maskMatrix[i_samples, j_samples] = 1
 pyr4deesse = np.reshape(np.multiply(np.reshape(pyr, (pyrDim_0, pyrDim_1)), maskMatrix), (-1,)) # input for Deesse
 
 with open('pyr_' + processRank + '.txt', 'w') as g:
-	for i in range(len(pyr)):
-		g.write("%.2e\n" % pyr[i])
-	g.close()
+    for i in range(len(pyr)):
+        g.write("%.2e\n" % pyr[i])
 
 with open('pyr4deesse_' + processRank + '.txt', 'w') as h:
-	for i in range(len(pyr4deesse)):
-		h.write("%.2e\n" % pyr4deesse[i])
-	h.close()
-
+    for i in range(len(pyr4deesse)):
+        h.write("%.2e\n" % pyr4deesse[i])
 
 
 

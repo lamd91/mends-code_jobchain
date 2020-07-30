@@ -49,8 +49,8 @@ INPUTFILE="testDeessePyr.in"
 
 while ! [ -s mpsim_${SLURM_ARRAY_TASK_ID}_*.gslib ] ||  ! [ -s pyr_${SLURM_ARRAY_TASK_ID}_*lev0000${nbLevels}.gslib ] # until file is not empty
 do
-	${EXEC} ${SLURM_CPUS_PER_TASK} ${INPUTFILE}
-	wait
+    ${EXEC} ${SLURM_CPUS_PER_TASK} ${INPUTFILE}
+    wait
 done
 
 

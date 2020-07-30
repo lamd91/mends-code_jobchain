@@ -21,7 +21,7 @@ wait
 
 while [ ! -f normalScoreOfPyr1_${SLURM_ARRAY_TASK_ID}.txt ]
 do
-	sleep 0.5
+    sleep 0.5
 done
 
 # Bring back output file to main directory

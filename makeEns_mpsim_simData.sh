@@ -18,15 +18,15 @@ paste -d' ' $(printf mpsim_%d".txt " ${memberIndices[@]}) > ens_of_MPSim.txt
 
 if [ ${iteration} -eq 0 ]
 then
-#	cp ens_of_simulatedData.txt iniSimulatedDataEns.txt
-	cp ens_of_simulatedData.txt ens_of_simulatedDataEns_0.txt
-	cp ens_of_simulatedData_withNoise.txt iniSimulatedDataEnsWithNoise.txt
+#    cp ens_of_simulatedData.txt iniSimulatedDataEns.txt
+    cp ens_of_simulatedData.txt ens_of_simulatedDataEns_0.txt
+    cp ens_of_simulatedData_withNoise.txt iniSimulatedDataEnsWithNoise.txt
 else
-	cp ens_of_MPSim.txt ens_of_MPSim_${iteration}.txt
-	paste -d' ' $(printf pyr_%d".txt " ${memberIndices[@]}) > ens_of_updatedPyr.txt
-#	paste -d' ' $(printf lev1pyr_%d".txt " ${memberIndices[@]}) > lev1PyrEns.txt
-	cp ens_of_updatedPyr.txt ens_of_updatedPyr_${iteration}.txt
-	cp ens_of_updatedPyr.txt ens_of_updatedPyr_afterKalman-DS_${iteration}.txt
-	cp ens_of_parameters.txt ens_of_parameters_beforeKalman_${iteration}.txt
-	
+    cp ens_of_MPSim.txt ens_of_MPSim_${iteration}.txt
+    paste -d' ' $(printf pyr_%d".txt " ${memberIndices[@]}) > ens_of_updatedPyr.txt
+#    paste -d' ' $(printf lev1pyr_%d".txt " ${memberIndices[@]}) > lev1PyrEns.txt
+    cp ens_of_updatedPyr.txt ens_of_updatedPyr_${iteration}.txt
+    cp ens_of_updatedPyr.txt ens_of_updatedPyr_afterKalman-DS_${iteration}.txt
+    cp ens_of_parameters.txt ens_of_parameters_beforeKalman_${iteration}.txt
+    
 fi

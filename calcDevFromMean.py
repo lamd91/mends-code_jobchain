@@ -20,7 +20,7 @@ nbOfElements = int(sys.argv[5])
 homeDirPath = sys.argv[6]
 
 parEns = np.loadtxt(homeDirPath + '/ens_of_parameters.txt') 
-par = np.reshape(parEns[:, rank],(-1, 1))	
+par = np.reshape(parEns[:, rank],(-1, 1))    
 
 devFromEnsMeanOfPar = myFun.computeDevFromEnsMean_withoutscaling(nbOfEnsMembers, nbOfElements, par, parEns)
 np.savetxt('devFromEnsMeanOfPar_' + processRank + '.txt', devFromEnsMeanOfPar, fmt="%.5e")

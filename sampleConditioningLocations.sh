@@ -8,12 +8,12 @@ rm -f sampledCells_xCoord.txt sampledCells_yCoord.txt # remove preexisting file 
 
 if [ ${modelName} == "model9" ]
 then
-	../sampleConditioningLocations.py 
+    ../sampleConditioningLocations.py 
 elif [ ${modelName} == "model10" ]
 then
-	../sampleConditioningLocations_nearObs.py
+    ../sampleConditioningLocations_nearObs.py
 else
-	exit
+    exit
 fi
 
 while [ ! -f sampledCells_xCoord.txt ] || [ ! -f sampledCells_yCoord.txt ]

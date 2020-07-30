@@ -23,7 +23,7 @@ ${homeDirPath}/addInflatedNoiseToObsDataEns.py $modelName q $nbAssimilations $nb
 
 while [[ ! -f inflatedObsErrEns_h.txt && ! -f inflatedObsErrEns_q.txt && ! -f inflatedDataEns_h.txt && ! -f inflatedDataEns_q.txt && ! -f regularlyPerturbedDataEns_h.txt && ! -f regularlyPerturbedDataEns_q.txt ]] 
 do
-	sleep 0.1
+    sleep 0.1
 done
 
 cp inflatedObsErrEns_h.txt inflatedObsErrEns_q.txt inflatedDataEns_h.txt inflatedDataEns_q.txt regularlyPerturbedDataEns_h.txt regularlyPerturbedDataEns_q.txt ${homeDirPath}

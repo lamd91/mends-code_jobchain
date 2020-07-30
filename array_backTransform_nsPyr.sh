@@ -17,7 +17,7 @@ ${homeDirPath}/bnst_nsPyr.py ${SLURM_ARRAY_TASK_ID} ${iter} ${homeDirPath} ${mod
 
 while [ ! -f pyr_${SLURM_ARRAY_TASK_ID}.txt ] || [ ! -f pyr4deesse_${SLURM_ARRAY_TASK_ID}.txt ]
 do
-	sleep 0.5
+    sleep 0.5
 done
 
 # Bring back output file to main directory
@@ -25,6 +25,6 @@ rm -f ${homeDirPath}/pyr_${SLURM_ARRAY_TASK_ID}.txt ${homeDirPath}/pyr4deesse_${
 cp pyr_${SLURM_ARRAY_TASK_ID}.txt pyr4deesse_${SLURM_ARRAY_TASK_ID}.txt ${homeDirPath}
 while [ ! -s ${homeDirPath}/pyr_${SLURM_ARRAY_TASK_ID}.txt ] || [ ! -s ${homeDirPath}/pyr4deesse_${SLURM_ARRAY_TASK_ID}.txt ]
 do
-	cp pyr_${SLURM_ARRAY_TASK_ID}.txt pyr4deesse_${SLURM_ARRAY_TASK_ID}.txt ${homeDirPath} 
+    cp pyr_${SLURM_ARRAY_TASK_ID}.txt pyr4deesse_${SLURM_ARRAY_TASK_ID}.txt ${homeDirPath} 
 done
 

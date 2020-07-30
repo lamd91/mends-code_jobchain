@@ -19,7 +19,7 @@ dataTypes = sys.argv[4]
 
 ## Compare the objective function value before and after parameter update
 
-# Load new simulated data file in variable	
+# Load new simulated data file in variable    
 simData_new = np.reshape(np.loadtxt('simData_' + processRank + '.txt'), (-1, 1))
 
 ## Compute the ensemble of measurement error covariance matrix
@@ -39,29 +39,29 @@ objFun_new = float(format(objFun[0], '.3e'))
 
 # Append list of objective function values in file
 with open('objFunValues_' + processRank + '.txt', 'a') as g:
-	g.write("%e\n" % objFun_new)
+    g.write("%e\n" % objFun_new)
 
 if dataTypes == "h+q":
-	OF_h = float(format(objFun[1], '.4e'))
-	OF_q = float(format(objFun[2], '.4e'))
+    OF_h = float(format(objFun[1], '.4e'))
+    OF_q = float(format(objFun[2], '.4e'))
 
-	# Write OF values computed using head data only
-	with open('objFun_h_' + processRank + '.txt', 'a') as p:
-		p.write("%e\n" % OF_h)
-		
-	# Write OF values computed using flowrate data only
-	with open('objFun_q_' + processRank + '.txt', 'a') as q:
-		q.write("%e\n" % OF_q)
+    # Write OF values computed using head data only
+    with open('objFun_h_' + processRank + '.txt', 'a') as p:
+        p.write("%e\n" % OF_h)
+        
+    # Write OF values computed using flowrate data only
+    with open('objFun_q_' + processRank + '.txt', 'a') as q:
+        q.write("%e\n" % OF_q)
 
 elif dataTypes == "h":
-	OF_h = float(format(objFun[1], '.4e'))
+    OF_h = float(format(objFun[1], '.4e'))
 
-	# Write OF values computed using head data only
-	with open('objFun_h_' + processRank + '.txt', 'a') as g:
-		g.write("%e\n" % OF_h)
-	
-if objFun_new <= objFun_min: 	
-	# Update the minimum objective function value
-	with open('objFunMin_' + processRank + '.txt', 'w') as m:
-		m.flush()
-		m.write("%e" % objFun_new)
+    # Write OF values computed using head data only
+    with open('objFun_h_' + processRank + '.txt', 'a') as g:
+        g.write("%e\n" % OF_h)
+    
+if objFun_new <= objFun_min:     
+    # Update the minimum objective function value
+    with open('objFunMin_' + processRank + '.txt', 'w') as m:
+        m.flush()
+        m.write("%e" % objFun_new)

@@ -23,9 +23,9 @@ y_nodes = np.linspace(0, 500, pyrDim_0+1)
 x_centroids = np.zeros(pyrDim_1) # 1D vector
 y_centroids = np.zeros(pyrDim_0)
 for i in np.arange(pyrDim_1):
-	x_centroids[i] = (x_nodes[i] + x_nodes[i+1])/2
+    x_centroids[i] = (x_nodes[i] + x_nodes[i+1])/2
 for i in np.arange(pyrDim_0):
-	y_centroids[i] = (y_nodes[i] + y_nodes[i+1])/2
+    y_centroids[i] = (y_nodes[i] + y_nodes[i+1])/2
 XX, YY = np.meshgrid(x_centroids, y_centroids) # coordinates of small grid
 
 x_rand, y_rand = sampleLocations(0, 5000, 0, 500, nbSamples_x, nbSamples_y)

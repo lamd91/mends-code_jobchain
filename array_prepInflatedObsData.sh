@@ -24,7 +24,7 @@ ${homeDirPath}/addInflatedNoiseToObsData.py $modelName q ${SLURM_ARRAY_TASK_ID} 
 
 while [[ ! -f obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}.txt && ! -f obsHeads_${SLURM_ARRAY_TASK_ID}.txt && ! -f obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}.txt && ! -f obsFlowrates_${SLURM_ARRAY_TASK_ID}.txt ]] 
 do
-	sleep 0.1
+    sleep 0.1
 done
 
 
@@ -32,17 +32,17 @@ done
 
 if [ $dataTypes == "h" ]
 then
-	while [[ ! -f obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}.txt && ! -f obsHeads_${SLURM_ARRAY_TASK_ID}.txt ]]; do sleep 0.1; done
-	cat obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}.txt > obsDataWithNoise_${SLURM_ARRAY_TASK_ID}.txt
-	cat obsHeadsWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt > obsDataWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt
-	cat obsHeads_${SLURM_ARRAY_TASK_ID}.txt > obsData4OF_${SLURM_ARRAY_TASK_ID}.txt
+    while [[ ! -f obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}.txt && ! -f obsHeads_${SLURM_ARRAY_TASK_ID}.txt ]]; do sleep 0.1; done
+    cat obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}.txt > obsDataWithNoise_${SLURM_ARRAY_TASK_ID}.txt
+    cat obsHeadsWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt > obsDataWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt
+    cat obsHeads_${SLURM_ARRAY_TASK_ID}.txt > obsData4OF_${SLURM_ARRAY_TASK_ID}.txt
 
 elif [ $dataTypes == "h+q" ] 
 then
-	while [[ ! -f obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}.txt && ! -f obsHeads_${SLURM_ARRAY_TASK_ID}.txt && ! -f obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}.txt && ! -f obsFlowrates_${SLURM_ARRAY_TASK_ID}.txt ]]; do sleep 0.1; done
-	cat obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}.txt obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}.txt > obsDataWithNoise_${SLURM_ARRAY_TASK_ID}.txt
-	cat obsHeadsWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt obsFlowratesWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt > obsDataWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt
-	cat obsHeads_${SLURM_ARRAY_TASK_ID}.txt obsFlowrates_${SLURM_ARRAY_TASK_ID}.txt > obsData4OF_${SLURM_ARRAY_TASK_ID}.txt
+    while [[ ! -f obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}.txt && ! -f obsHeads_${SLURM_ARRAY_TASK_ID}.txt && ! -f obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}.txt && ! -f obsFlowrates_${SLURM_ARRAY_TASK_ID}.txt ]]; do sleep 0.1; done
+    cat obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}.txt obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}.txt > obsDataWithNoise_${SLURM_ARRAY_TASK_ID}.txt
+    cat obsHeadsWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt obsFlowratesWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt > obsDataWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt
+    cat obsHeads_${SLURM_ARRAY_TASK_ID}.txt obsFlowrates_${SLURM_ARRAY_TASK_ID}.txt > obsData4OF_${SLURM_ARRAY_TASK_ID}.txt
 fi
 
 i=1
@@ -53,14 +53,14 @@ rm -f obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}_*  # delete preexisting files
 
 while [ ${i} -le ${nbObsPts} ] 
 do
-	sed -n ${line_start4heads},${line_end4heads}p obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}.txt > obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt
-	sed -n ${line_start4heads},${line_end4heads}p obsHeadsWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt > obsHeadsWithRegularNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt
+    sed -n ${line_start4heads},${line_end4heads}p obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}.txt > obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt
+    sed -n ${line_start4heads},${line_end4heads}p obsHeadsWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt > obsHeadsWithRegularNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt
 
-	((line_start4heads=line_start4heads+37))
-	((line_end4heads=line_end4heads+37))
-	((i=i+1))
+    ((line_start4heads=line_start4heads+37))
+    ((line_end4heads=line_end4heads+37))
+    ((i=i+1))
 
-	while  [ -f obsHeadsWithRegularNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt ] && [ -f obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt ]; do sleep 0.25; done # safety check
+    while  [ -f obsHeadsWithRegularNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt ] && [ -f obsHeadsWithNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt ]; do sleep 0.25; done # safety check
 done
 
 j=1
@@ -70,13 +70,13 @@ rm -f obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}_* # delete preexisting files
 
 while [ ${j} -le ${nbOfFluidBudgets} ] 
 do
-	sed -n ${line_start4heads},${line_end4heads}p obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}.txt > obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}_${j}.txt
-	sed -n ${line_start4heads},${line_end4heads}p obsFlowratesWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt > obsFlowratesWithRegularNoise_${SLURM_ARRAY_TASK_ID}_${j}.txt
-	((line_start4heads=line_start4heads+20))
-	((line_end4heads=line_end4heads+20))
-	((j=j+1))
-	
-	while [ -f obsFlowratesWithRegularNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt ] && [ -f obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt ]; do sleep 0.25; done # safety check
+    sed -n ${line_start4heads},${line_end4heads}p obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}.txt > obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}_${j}.txt
+    sed -n ${line_start4heads},${line_end4heads}p obsFlowratesWithRegularNoise_${SLURM_ARRAY_TASK_ID}.txt > obsFlowratesWithRegularNoise_${SLURM_ARRAY_TASK_ID}_${j}.txt
+    ((line_start4heads=line_start4heads+20))
+    ((line_end4heads=line_end4heads+20))
+    ((j=j+1))
+    
+    while [ -f obsFlowratesWithRegularNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt ] && [ -f obsFlowratesWithNoise_${SLURM_ARRAY_TASK_ID}_${i}.txt ]; do sleep 0.25; done # safety check
 done
 
 # Copy of files created on node to home dir

@@ -30,19 +30,19 @@ pyrDim1=125
 
 # Create localization matrix
 if dataTypes == "h":
-	if modelName == 'model9':
-		locMatrix = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 1600, pyrDim0, pyrDim1, 5000, 500)[:, 0:370] 
-	elif modelName == 'model10':
-		locMatrix = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 2800, pyrDim0, pyrDim1, 5000, 500)[:, 0:370]
+    if modelName == 'model9':
+        locMatrix = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 1600, pyrDim0, pyrDim1, 5000, 500)[:, 0:370] 
+    elif modelName == 'model10':
+        locMatrix = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 2800, pyrDim0, pyrDim1, 5000, 500)[:, 0:370]
 elif dataTypes == "h+q":
-	if modelName == 'model9':
-		locMatrix_h = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 1600, 13, 125, 5000, 500)[:, 0:370] 
-		locMatrix_q = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 1600, 13, 125, 5000, 500)[:, 1026:] 
-		locMatrix = np.hstack((locMatrix_h, locMatrix_q))	
-	elif modelName == 'model10':
-		locMatrix_h = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 2500, 13, 125, 5000, 500)[:, 0:370] 
-		locMatrix_q = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 2500, 13, 125, 5000, 500)[:, 1026:] 
-		locMatrix = np.hstack((locMatrix_h, locMatrix_q))	
+    if modelName == 'model9':
+        locMatrix_h = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 1600, 13, 125, 5000, 500)[:, 0:370] 
+        locMatrix_q = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 1600, 13, 125, 5000, 500)[:, 1026:] 
+        locMatrix = np.hstack((locMatrix_h, locMatrix_q))    
+    elif modelName == 'model10':
+        locMatrix_h = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 2500, 13, 125, 5000, 500)[:, 0:370] 
+        locMatrix_q = myFun.makeTaperMatrix_smallGrid(homeDirPath, homeDirPath + '/' + modelName, 2500, 13, 125, 5000, 500)[:, 1026:] 
+        locMatrix = np.hstack((locMatrix_h, locMatrix_q))    
 
 # Compute the covariance matrices based on the ensembles
 
@@ -56,7 +56,7 @@ nbOfData = ensOfSimDataDevFromEnsMean.shape[0]
 
 # Define ensemble of measurement error covariance matrix
 
-varVector = np.reshape(np.var(ensOfOrigObsData, axis=1), (-1,1))	
+varVector = np.reshape(np.var(ensOfOrigObsData, axis=1), (-1,1))    
 inv_sqrt_varVector = np.reshape(1/varVector**(1/2), -1)
 scalingMatrix4SimData = np.diag(inv_sqrt_varVector)
 
@@ -102,8 +102,6 @@ par_new = par_old + parUpgradeFromDataMismatch
 np.savetxt('parUpgradeFromDataMismatch_' + processRank + '.txt', parUpgradeFromDataMismatch, fmt="%.2e")
 
 with open('transformedPyr1_' + processRank + '.txt', 'w') as g:
-	for i in range(len(par_new)):
-		g.write("%.2e\n" % par_new[i])
-	g.close()
-
+    for i in range(len(par_new)):
+        g.write("%.2e\n" % par_new[i])
 

@@ -16,21 +16,19 @@ rank = int(processRank) # integer
 # Compute Normal Score of parameters 
 
 if iteration == 0:
-	pyrEns = np.loadtxt(homeDirPath + '/iniOrigPyrEns.txt')
-	pyrEns_perLocation = np.transpose(pyrEns)
-	transformed_par = nscore_bis(pyrEns_perLocation)[0][rank, :] # only valid for iteration 0 
+    pyrEns = np.loadtxt(homeDirPath + '/iniOrigPyrEns.txt')
+    pyrEns_perLocation = np.transpose(pyrEns)
+    transformed_par = nscore_bis(pyrEns_perLocation)[0][rank, :] # only valid for iteration 0 
 else:
-	pyrEns = np.loadtxt(homeDirPath + '/ens_of_updatedPyr.txt')
-	pyrEns_perLocation = np.transpose(pyrEns)
-	transformed_par = nscore_pyr(pyrEns_perLocation, homeDirPath)[rank, :] # for all other iterations
-#	transformed_par = nscore_bis(pyrEns_perLocation)[0][rank, :] # for all other iterations
+    pyrEns = np.loadtxt(homeDirPath + '/ens_of_updatedPyr.txt')
+    pyrEns_perLocation = np.transpose(pyrEns)
+    transformed_par = nscore_pyr(pyrEns_perLocation, homeDirPath)[rank, :] # for all other iterations
+#    transformed_par = nscore_bis(pyrEns_perLocation)[0][rank, :] # for all other iterations
 
 # Save output in text file
 with open('normalScoreOfPyr1_' + processRank + '.txt', 'w') as g:
-	for i in range(len(transformed_par)):
-		g.write("%.5e\n" % transformed_par[i])
-	g.close()
-
+    for i in range(len(transformed_par)):
+        g.write("%.5e\n" % transformed_par[i])
 
 
 
