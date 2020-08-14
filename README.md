@@ -4,5 +4,5 @@ The implementation consists in executing a "job chain" i.e. a series of job subm
 
 In addition to the files provided in this repository, you will need to acquire the executable "deesseHDinPyrOMP" from the RandLab research group (more info on http://www.randlab.org/). This executable is necessary to run generateMPSim_savePyr.sh and conditionMPSim.sh.
 
-Then, to run this job chain implementation, simply execute the bash script mends.sh by typing ./mends.sh in the repository.
+To run this job chain-based implementation, simply execute the bash script mends.sh by typing ./mends.sh in the repository.
 
